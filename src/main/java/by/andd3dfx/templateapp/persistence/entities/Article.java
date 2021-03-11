@@ -10,11 +10,21 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import lombok.Data;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 @Data
 @Entity
 @Table(name = "articles")
+@TypeDefs({
+        @TypeDef(name = "json", typeClass = JsonStringType.class),
+        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+})
 public class Article {
 
     @Id
@@ -37,6 +47,10 @@ public class Article {
 
     @Column
     private String author;
+
+    @Type(type = "jsonb")
+    @Column(name = "json_data", columnDefinition = "jsonb")
+    private String jsonData;
 
     @Column(name = "date_created")
     private LocalDateTime dateCreated;

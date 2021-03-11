@@ -35,6 +35,9 @@ public class ArticleDto {
     @ApiModelProperty(notes = "Article's author", required = true)
     private String author;
 
+    @ApiModelProperty(notes = "Article's jsonData")
+    private String jsonData;
+
     @Null(message = "DateCreated shouldn't be populated")
     @ApiModelProperty(notes = "Date & time of article creation")
     private LocalDateTime dateCreated;
