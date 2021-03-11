@@ -37,7 +37,7 @@ public class IntegrationTestInitializer implements ApplicationContextInitializer
     private static Map<String, String> createConnectionConfiguration() {
         return Map.of(
                 "DB_URL", postgres.getJdbcUrl(),
-                "DB_USERNAME", postgres.getUsername(),
+                "DB_USER", postgres.getUsername(),
                 "DB_PASSWORD", postgres.getPassword()
         );
     }
