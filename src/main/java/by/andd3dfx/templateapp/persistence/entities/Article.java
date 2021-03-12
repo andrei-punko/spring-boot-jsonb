@@ -49,8 +49,8 @@ public class Article {
     private String author;
 
     @Type(type = "jsonb")
-    @Column(name = "json_data", columnDefinition = "jsonb")
-    private String jsonData;
+    @Column(columnDefinition = "jsonb")
+    private Location location;
 
     @Column(name = "date_created")
     private LocalDateTime dateCreated;

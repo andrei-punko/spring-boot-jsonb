@@ -6,7 +6,7 @@ create table articles (
     ts timestamp,
     text varchar not null,
     author varchar not null,
-    json_data JSONB null,
+    location JSONB null,
     date_created timestamp not null,
     date_updated timestamp not null,
     primary key (id)
