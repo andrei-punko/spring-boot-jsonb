@@ -52,6 +52,16 @@ public class ArticleController {
         return articleService.create(newArticleDto);
     }
 
+    @ApiOperation(value = "Get article by location", response = List.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Article successfully retrieved"),
+            @ApiResponse(code = 404, message = "Article not found"),
+    })
+    @GetMapping
+    public List<ArticleDto> getArticleByLocation(@RequestParam(required = false) String country, @RequestParam(required = false) String city) {
+        return articleService.getArticleByLocation(country, city);
+    }
+
     @ApiOperation(value = "Get article by id", response = ArticleDto.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Article successfully retrieved"),
@@ -98,23 +108,11 @@ public class ArticleController {
         articleService.delete(id);
     }
 
-    // Seems will be deleted
-    @Deprecated
-    public List<ArticleDto> readArticles(
-        @RequestParam(defaultValue = "0") Integer pageNo,
-        @RequestParam(defaultValue = "50") Integer pageSize,
-        @RequestParam(defaultValue = "title") String sortBy
-    ) {
-        Pageable pageRequest = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-        final Page<ArticleDto> articleDtoPage = readArticlesPaged(pageRequest);
-        return articleDtoPage.getContent();
-    }
-
     @ApiOperation(value = "Read articles paged", response = Page.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Articles successfully retrieved"),
     })
-    @GetMapping
+    @GetMapping("/all")
     // Workaround for Swagger bug, according to https://github.com/springfox/springfox/issues/2623#issuecomment-414297583
     @ApiImplicitParams({
         @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
