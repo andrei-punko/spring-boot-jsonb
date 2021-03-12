@@ -28,7 +28,7 @@ http://localhost:9080/swagger-ui.html
 ## Useful CURL commands
 
 ### New article addition:
-    curl -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Some tittle", "text": "Some text", "author": "Pushkin", "jsonData": "{ \"key\": \"value\" }" }' -X POST http://localhost:9080/articles
+    curl -X POST "http://localhost:9080/articles" -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Some tittle", "text": "Some text", "author": "Pushkin", "location": { "country": "BY", "city": "Minsk" } }'
 
 ### Get existing article:
     curl -i http://localhost:9080/articles/1
@@ -36,8 +36,12 @@ http://localhost:9080/swagger-ui.html
 ### Update existing article:
     curl -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Another tittle" }' -X PATCH http://localhost:9080/articles/2
 
+### Search articles by an inner field of JSONB type:
+    curl -i 'http://localhost:9080/articles?country=BY'
+    curl -i 'http://localhost:9080/articles?country=BY&city=Minsk'
+
 ### Get list of articles with pagination support:  
-    curl -i 'http://localhost:9080/articles?size=2&page=4&sort=title,DESC'
+    curl -i 'http://localhost:9080/articles/all?size=2&page=4&sort=title,DESC'
 
 ### Deletion of article:  
     curl -i -X DELETE http://localhost:9080/articles/1

@@ -15,9 +15,11 @@ public class ArticleRepositoryCustomImpl implements ArticleRepositoryCustom {
     @Autowired
     private EntityManager em;
 
+    /**
+     * See for reference: https://medium.com/hackernoon/how-to-query-jsonb-beginner-sheet-cheat-4da3aa5082a3
+     */
     @Override
     public List<Article> getArticleByCountryNCity(String country, String city) {
-
         return em.createNativeQuery("SELECT * " +
                         "FROM articles a " +
                         buildLocationCondition(country, city),
