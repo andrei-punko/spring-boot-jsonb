@@ -17,6 +17,8 @@ services:
   spring-boot-jsonb-app:
     build: ./
     network_mode: bridge
+    volumes:
+      - ./logs:/logs
     expose:
       - 9080
     ports:
@@ -32,3 +34,4 @@ services:
 
 volumes:
   postgres-data:
+  logs:
