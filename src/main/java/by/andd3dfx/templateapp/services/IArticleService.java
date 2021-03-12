@@ -5,6 +5,8 @@ import by.andd3dfx.templateapp.dto.ArticleUpdateDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface IArticleService {
 
     ArticleDto create(ArticleDto articleDto);
@@ -16,4 +18,6 @@ public interface IArticleService {
     void delete(Long id);
 
     Page<ArticleDto> getAll(Pageable pageable);
+
+    List<ArticleDto> getArticleByLocation(String country, String city);
 }

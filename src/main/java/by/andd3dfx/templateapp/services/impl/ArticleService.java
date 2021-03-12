@@ -14,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ArticleService implements IArticleService {
@@ -63,5 +65,12 @@ public class ArticleService implements IArticleService {
     public Page<ArticleDto> getAll(Pageable pageable) {
         final Page<Article> pagedResult = articleRepository.findAll(pageable);
         return pagedResult.map(articleMapper::toArticleDto);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<ArticleDto> getArticleByLocation(String country, String city) {
+        List<Article> articles = articleRepository.getArticleByCountryNCity(country, city);
+        return articleMapper.toArticleDtoList(articles);
     }
 }
