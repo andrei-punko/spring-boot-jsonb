@@ -2,6 +2,8 @@
 # Spring Boot application with example of PostgreSQL's JSONB data type usage
 
 ![Java CI with Maven](https://github.com/andrei-punko/spring-boot-jsonb/workflows/Java%20CI%20with%20Maven/badge.svg)
+[![Coverage](.github/badges/jacoco.svg)](jacoco.svg)
+[![Branches](.github/badges/branches.svg)](branches.svg)
 
 Includes web-server on port 9080 with `/articles` endpoint exposed.  
 Supports CRUD set of operations and R operation with pagination.
