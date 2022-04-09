@@ -1,36 +1,36 @@
 version: "3"
+
 services:
   postgres:
     image: postgres:9.6.15-alpine
-    network_mode: bridge
+    restart: always
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    expose:
-      - 5432
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
-      - POSTGRES_DB=templatedb
-      - POSTGRES_USER=template-app-user
-      - POSTGRES_PASSWORD=template-app-password
+      POSTGRES_DB: articlesdb
+      POSTGRES_USER: articles-user
+      POSTGRES_PASSWORD: articles-password
 
   spring-boot-jsonb-app:
-    build: ./
-    network_mode: bridge
+    build: .
+    restart: always
     volumes:
       - ./logs:/logs
-    expose:
-      - 9080
     ports:
-      - 9080:9080
-    environment:
-      - DB_URL=jdbc:postgresql://postgres:5432/templatedb
-      - DB_USER=template-app-user
-      - DB_PASSWORD=template-app-password
+      - "9080:9080"
     depends_on:
       - postgres
-    links:
-      - postgres
+    environment:
+      DB_URL: 'jdbc:postgresql://postgres:5432/articlesdb'
+      DB_USER: articles-user
+      DB_PASSWORD: articles-password
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9080/health"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
 
 volumes:
   postgres-data:
