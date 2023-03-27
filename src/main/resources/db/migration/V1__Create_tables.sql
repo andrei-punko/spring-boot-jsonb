@@ -1,6 +1,6 @@
 
 create table articles (
-    id int not null,
+    id serial not null,
     title varchar(100) not null,
     summary varchar(255),
     ts timestamp,
