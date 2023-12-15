@@ -1,5 +1,5 @@
 
-# Spring Boot application with example of PostgreSQL's JSONB data type usage
+# Spring Boot app with example of Postgres JSONB data type usage
 
 ![Java CI with Maven](https://github.com/andrei-punko/spring-boot-jsonb/workflows/Java%20CI%20with%20Maven/badge.svg)
 [![Coverage](.github/badges/jacoco.svg)](https://github.com/andrei-punko/spring-boot-jsonb/actions/workflows/maven.yml)
