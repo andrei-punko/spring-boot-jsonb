@@ -12,9 +12,8 @@ import io.swagger.annotations.ApiResponses;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
@@ -108,7 +107,7 @@ public class ArticleController {
         articleService.delete(id);
     }
 
-    @ApiOperation(value = "Read articles paged", response = Page.class)
+    @ApiOperation(value = "Read articles paged", response = Slice.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Articles successfully retrieved"),
     })
@@ -125,7 +124,7 @@ public class ArticleController {
                 "Multiple sort criteria are supported.",
             defaultValue = "title,ASC")
     })
-    public Page<ArticleDto> readArticlesPaged(
+    public Slice<ArticleDto> readArticlesPaged(
         @PageableDefault(page = 0, size = 50)
         @SortDefault.SortDefaults({
             @SortDefault(sort = "title", direction = Sort.Direction.ASC)

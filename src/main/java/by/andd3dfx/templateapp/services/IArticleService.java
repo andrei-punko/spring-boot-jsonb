@@ -2,8 +2,8 @@ package by.andd3dfx.templateapp.services;
 
 import by.andd3dfx.templateapp.dto.ArticleDto;
 import by.andd3dfx.templateapp.dto.ArticleUpdateDto;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public interface IArticleService {
 
     void delete(Long id);
 
-    Page<ArticleDto> getAll(Pageable pageable);
+    Slice<ArticleDto> getAll(Pageable pageable);
 
     List<ArticleDto> getArticleByLocation(String country, String city);
 }

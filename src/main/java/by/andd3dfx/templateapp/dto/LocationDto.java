@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LocationDto {
+
     private String country;
     private String city;
 }

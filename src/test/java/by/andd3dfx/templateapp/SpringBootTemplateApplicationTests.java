@@ -2,8 +2,6 @@ package by.andd3dfx.templateapp;
 
 import by.andd3dfx.templateapp.dto.ArticleDto;
 import by.andd3dfx.templateapp.dto.LocationDto;
-import by.andd3dfx.templateapp.persistence.dao.ArticleRepository;
-import by.andd3dfx.templateapp.persistence.entities.Article;
 import by.andd3dfx.templateapp.services.impl.ArticleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +20,14 @@ class SpringBootTemplateApplicationTests {
 
 	@Test
 	void contextLoads() {
-		ArticleDto article = new ArticleDto();
+		var article = new ArticleDto();
 		article.setTitle("Voina i mir");
 		article.setAuthor("Lev Tolstoj");
 		article.setText("Some text");
 		article.setLocation(new LocationDto("US", "New York"));
-		ArticleDto createdArticle = articleService.create(article);
+		var createdArticle = articleService.create(article);
 
-		ArticleDto savedArticle = articleService.get(createdArticle.getId());
+		var savedArticle = articleService.get(createdArticle.getId());
 		assertThat(savedArticle.getTitle(), is(article.getTitle()));
 		assertThat(savedArticle.getAuthor(), is(article.getAuthor()));
 		assertThat(savedArticle.getText(), is(article.getText()));

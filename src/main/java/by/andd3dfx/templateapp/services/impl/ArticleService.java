@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -62,8 +63,8 @@ public class ArticleService implements IArticleService {
 
     @Transactional(readOnly = true)
     @Override
-    public Page<ArticleDto> getAll(Pageable pageable) {
-        final Page<Article> pagedResult = articleRepository.findAll(pageable);
+    public Slice<ArticleDto> getAll(Pageable pageable) {
+        Slice<Article> pagedResult = articleRepository.findAll(pageable);
         return pagedResult.map(articleMapper::toArticleDto);
     }
 
