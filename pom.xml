@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.12</version>
+		<version>2.7.18</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -18,10 +18,10 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<mapstruct.version>1.5.3.Final</mapstruct.version>
-		<lombok.version>1.18.26</lombok.version>
-		<swagger.version>2.9.2</swagger.version>
-		<swagger-annotations.version>1.5.21</swagger-annotations.version>
+		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<lombok.version>1.18.30</lombok.version>
+		<swagger.version>2.10.5</swagger.version>
+		<swagger-annotations.version>1.5.24</swagger-annotations.version>
 	</properties>
 
 	<dependencies>
@@ -36,6 +36,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
 		<dependency>
@@ -87,6 +91,7 @@
 			<version>${swagger-annotations.version}</version>
 		</dependency>
 
+		<!-- DB -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
@@ -97,13 +102,15 @@
 			<scope>runtime</scope>
 		</dependency>
 
+
 		<!-- JSONB types -->
 		<dependency>
 			<groupId>com.vladmihalcea</groupId>
-			<artifactId>hibernate-types-52</artifactId>
-			<version>2.10.3</version>
+			<artifactId>hibernate-types-55</artifactId>
+			<version>2.21.1</version>
 		</dependency>
 
+		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -115,13 +122,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>1.17.6</version>
+			<version>1.19.3</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -134,7 +141,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.12.1</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -156,7 +163,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.8</version>
+				<version>0.8.11</version>
 				<executions>
 					<execution>
 						<goals>
