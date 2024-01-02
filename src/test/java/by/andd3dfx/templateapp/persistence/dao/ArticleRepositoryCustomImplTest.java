@@ -19,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @ContextConfiguration(initializers = IntegrationTestInitializer.class)
 @SpringBootTest
-class ArticleRepositoryCustomImplTest {
+public class ArticleRepositoryCustomImplTest {
 
     @Autowired
     private ArticleRepository repository;
@@ -37,7 +37,7 @@ class ArticleRepositoryCustomImplTest {
         repository.saveAll(Arrays.asList(entity, entity2, entity3));
     }
 
-    private Article buildArticle(String title, String summary, String country, String city) {
+    public static Article buildArticle(String title, String summary, String country, String city) {
         Article article = new Article();
         article.setTitle(title);
         article.setSummary(summary);

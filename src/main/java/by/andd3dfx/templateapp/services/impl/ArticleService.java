@@ -2,14 +2,12 @@ package by.andd3dfx.templateapp.services.impl;
 
 import by.andd3dfx.templateapp.dto.ArticleDto;
 import by.andd3dfx.templateapp.dto.ArticleUpdateDto;
-import by.andd3dfx.templateapp.exceptions.ArticleNotFoundException;
+import by.andd3dfx.templateapp.error.exception.ArticleNotFoundException;
 import by.andd3dfx.templateapp.mappers.ArticleMapper;
 import by.andd3dfx.templateapp.persistence.dao.ArticleRepository;
 import by.andd3dfx.templateapp.persistence.entities.Article;
 import by.andd3dfx.templateapp.services.IArticleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
