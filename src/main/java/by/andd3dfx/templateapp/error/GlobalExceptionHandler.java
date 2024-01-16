@@ -2,7 +2,6 @@ package by.andd3dfx.templateapp.error;
 
 import by.andd3dfx.templateapp.error.dto.ExceptionResponse;
 import by.andd3dfx.templateapp.error.exception.NotFoundException;
-import by.andd3dfx.templateapp.error.exception.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,14 +15,6 @@ import java.time.LocalDateTime;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
-    /**
-     * 401.
-     */
-    @ExceptionHandler(UnauthorizedException.class)
-    public ResponseEntity<ExceptionResponse> handleUnauthorizedException(UnauthorizedException ex) {
-        return buildResponseEntity(ex, HttpStatus.UNAUTHORIZED);
-    }
 
     /**
      * 404.
