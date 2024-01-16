@@ -25,7 +25,7 @@ Supports CRUD set of operations and R operation with pagination.
 http://localhost:9080/articles
 
 ## Swagger documentation:  
-http://localhost:9080/swagger-ui.html
+http://localhost:9080/swagger-ui/index.html
 
 ## Useful CURL commands
 
