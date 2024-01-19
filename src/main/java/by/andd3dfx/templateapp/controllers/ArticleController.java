@@ -12,9 +12,9 @@ import io.swagger.annotations.ApiResponses;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
@@ -125,10 +125,10 @@ public class ArticleController {
             defaultValue = "title,ASC")
     })
     public Slice<ArticleDto> readArticlesPaged(
-        @PageableDefault(page = 0, size = 50)
-        @SortDefault.SortDefaults({
-            @SortDefault(sort = "title", direction = Sort.Direction.ASC)
-        }) Pageable pageable
+            @ParameterObject
+            @PageableDefault(size = 50)
+            @SortDefault(sort = "title")
+            Pageable pageable
     ) {
         return articleService.getAll(pageable);
     }
