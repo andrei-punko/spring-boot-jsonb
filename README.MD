@@ -10,7 +10,7 @@ Supports CRUD set of operations and R operation with pagination.
 
 ## Prerequisites:
 - Maven 3
-- JDK 17
+- JDK 21
 
 ## Build an application:
     mvn clean install
