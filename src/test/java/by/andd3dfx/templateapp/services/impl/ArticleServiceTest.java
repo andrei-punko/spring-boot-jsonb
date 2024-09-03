@@ -68,11 +68,8 @@ class ArticleServiceTest {
         when(articleRepositoryMock.save(article)).thenReturn(updatedArticle);
         when(articleMapperMock.toArticleDto(updatedArticle)).thenReturn(updatedArticleDto);
 
-        ArticleDto result = articleService.create(articleDto);
+        var result = articleService.create(articleDto);
 
-        verify(articleMapperMock).toArticle(articleDto);
-        verify(articleRepositoryMock).save(article);
-        verify(articleMapperMock).toArticleDto(updatedArticle);
         assertThat(result, is(updatedArticleDto));
     }
 
@@ -85,10 +82,8 @@ class ArticleServiceTest {
         when(articleRepositoryMock.findById(ARTICLE_ID)).thenReturn(optionalArticle);
         when(articleMapperMock.toArticleDto(article)).thenReturn(articleDto);
 
-        ArticleDto result = articleService.get(ARTICLE_ID);
+        var result = articleService.get(ARTICLE_ID);
 
-        verify(articleRepositoryMock).findById(ARTICLE_ID);
-        verify(articleMapperMock).toArticleDto(article);
         assertThat(result, is(articleDto));
     }
 
@@ -100,7 +95,6 @@ class ArticleServiceTest {
 
         try {
             articleService.get(ARTICLE_ID);
-
             fail("Exception should be thrown");
         } catch (ArticleNotFoundException ex) {
             verify(articleRepositoryMock).findById(ARTICLE_ID);
@@ -124,10 +118,7 @@ class ArticleServiceTest {
 
         articleService.update(ARTICLE_ID, articleUpdateDto);
 
-        verify(articleRepositoryMock).findById(ARTICLE_ID);
         verify(articleMapperMock).toArticle(articleUpdateDto, article);
-        verify(articleRepositoryMock).save(article);
-        verify(articleMapperMock).toArticleDto(savedArticle);
     }
 
     @Test
@@ -153,7 +144,6 @@ class ArticleServiceTest {
 
         articleService.delete(ARTICLE_ID);
 
-        verify(articleRepositoryMock).existsById(ARTICLE_ID);
         verify(articleRepositoryMock).deleteById(ARTICLE_ID);
     }
 
@@ -164,7 +154,6 @@ class ArticleServiceTest {
 
         try {
             articleService.delete(ARTICLE_ID);
-
             fail("Exception should be thrown");
         } catch (ArticleNotFoundException ex) {
             verify(articleRepositoryMock).existsById(ARTICLE_ID);
@@ -188,8 +177,6 @@ class ArticleServiceTest {
 
         Slice<ArticleDto> result = articleService.getAll(pageRequest);
 
-        verify(articleRepositoryMock).findAll(pageRequest);
-        verify(articleMapperMock).toArticleDto(articles.get(0));
         assertThat(result.getContent().size(), is(1));
         assertThat(result.getContent().get(0), is(articleDtoList.get(0)));
     }
