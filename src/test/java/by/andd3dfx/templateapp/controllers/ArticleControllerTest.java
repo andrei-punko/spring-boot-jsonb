@@ -263,10 +263,10 @@ class ArticleControllerTest {
     }
 
     /**
-     * Search by location using JSONB fields
+     * Search by location using JSONB fields: location country & location city
      */
     @Test
-    public void readArticlesByLocation() throws Exception {
+    public void readArticlesByLocationWithCountryAndCity() throws Exception {
         var entity = buildArticle("Ivan", "HD", "FR", "Brest");
         var entity2 = buildArticle("Vasily", "HD", "BY", "Brest");
         var entity3 = buildArticle("Ivan-007", "4K", "BY", "Minsk");
@@ -281,6 +281,54 @@ class ArticleControllerTest {
                 .andExpect(jsonPath("$[0].summary", is("4K")))
                 .andExpect(jsonPath("$[0].location.country", is("BY")))
                 .andExpect(jsonPath("$[0].location.city", is("Minsk")));
+
+        repository.deleteAll(List.of(entity, entity2, entity3));
+    }
+
+    /**
+     * Search by location using JSONB fields: location country
+     */
+    @Test
+    public void readArticlesByLocationWithCountry() throws Exception {
+        var entity = buildArticle("Ivan", "HD", "FR", "Brest");
+        var entity2 = buildArticle("Vasily", "HD", "BY", "Brest");
+        var entity3 = buildArticle("Ivan-007", "4K", "BY", "Minsk");
+        repository.saveAll(List.of(entity, entity2, entity3));
+
+        mockMvc.perform(get("/articles")
+                        .param("country", "FR"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", is(1)))
+                .andExpect(jsonPath("$[0].title", is("Ivan")))
+                .andExpect(jsonPath("$[0].summary", is("HD")))
+                .andExpect(jsonPath("$[0].location.country", is("FR")))
+                .andExpect(jsonPath("$[0].location.city", is("Brest")));
+
+        repository.deleteAll(List.of(entity, entity2, entity3));
+    }
+
+    /**
+     * Search by location using JSONB fields: location city
+     */
+    @Test
+    public void readArticlesByLocationWithCity() throws Exception {
+        var entity = buildArticle("Ivan", "HD", "FR", "Brest");
+        var entity2 = buildArticle("Vasily", "HD", "BY", "Brest");
+        var entity3 = buildArticle("Ivan-007", "4K", "BY", "Minsk");
+        repository.saveAll(List.of(entity, entity2, entity3));
+
+        mockMvc.perform(get("/articles")
+                        .param("city", "Brest"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", is(2)))
+                .andExpect(jsonPath("$[0].title", is("Ivan")))
+                .andExpect(jsonPath("$[0].summary", is("HD")))
+                .andExpect(jsonPath("$[0].location.country", is("FR")))
+                .andExpect(jsonPath("$[0].location.city", is("Brest")))
+                .andExpect(jsonPath("$[1].title", is("Vasily")))
+                .andExpect(jsonPath("$[1].summary", is("HD")))
+                .andExpect(jsonPath("$[1].location.country", is("BY")))
+                .andExpect(jsonPath("$[1].location.city", is("Brest")));
 
         repository.deleteAll(List.of(entity, entity2, entity3));
     }
