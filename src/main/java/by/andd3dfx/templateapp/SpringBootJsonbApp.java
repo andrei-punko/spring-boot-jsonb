@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 
 @SpringBootApplication
-public class SpringBootTemplateApplication {
+public class SpringBootJsonbApp {
 
 	public static void main(String[] args) {
-		Environment env = new SpringApplication(SpringBootTemplateApplication.class)
+		Environment env = new SpringApplication(SpringBootJsonbApp.class)
 				.run(args)
 				.getEnvironment();
 		StartupHelper.logApplicationStartup(env);

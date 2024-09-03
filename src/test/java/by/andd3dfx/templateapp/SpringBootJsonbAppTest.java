@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @ContextConfiguration(initializers = IntegrationTestInitializer.class)
 @SpringBootTest
-class SpringBootTemplateApplicationTests {
+class SpringBootJsonbAppTest {
 
 	@Autowired
 	ArticleService articleService;
