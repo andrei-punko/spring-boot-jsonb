@@ -57,7 +57,9 @@ public class ArticleController {
             @ApiResponse(code = 404, message = "Article not found"),
     })
     @GetMapping
-    public List<ArticleDto> getArticleByLocation(@RequestParam(required = false) String country, @RequestParam(required = false) String city) {
+    public List<ArticleDto> getArticleByLocation(
+            @RequestParam(required = false, name = "country") String country,
+            @RequestParam(required = false, name = "city") String city) {
         return articleService.getArticleByLocation(country, city);
     }
 
