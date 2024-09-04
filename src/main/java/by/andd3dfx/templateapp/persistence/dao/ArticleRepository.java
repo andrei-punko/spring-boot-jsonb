@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface ArticleRepository extends CrudRepository<Article, Long>, ArticleRepositoryCustom {
 
+    @Override
     List<Article> getArticleByCountryNCity(String country, String city);
 
     Slice<Article> findAll(Pageable pageable);
