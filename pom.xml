@@ -16,11 +16,11 @@
 		<java.version>21</java.version>
 
 		<spring-boot.version>2.7.18</spring-boot.version>
-		<mapstruct.version>1.5.5.Final</mapstruct.version>
-		<lombok.version>1.18.30</lombok.version>
+		<mapstruct.version>1.6.0</mapstruct.version>
+		<lombok.version>1.18.34</lombok.version>
 		<springdoc.version>1.7.0</springdoc.version>
 		<swagger.version>1.6.12</swagger.version>
-		<testcontainers.version>1.19.3</testcontainers.version>
+		<testcontainers.version>1.20.1</testcontainers.version>
 	</properties>
 
 	<!-- Use BOM (Bill of materials) for JUnit & Spring Boot -->
@@ -30,7 +30,7 @@
 			<dependency>
 				<groupId>org.junit</groupId>
 				<artifactId>junit-bom</artifactId>
-				<version>5.10.1</version>
+				<version>5.11.0</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
@@ -144,7 +144,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.2.5</version>
+				<version>3.5.0</version>
 			</plugin>
 
 			<!-- According to: https://www.baeldung.com/spring-boot-fix-the-no-main-manifest-attribute -->
@@ -164,7 +164,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.12.1</version>
+				<version>3.13.0</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -193,7 +193,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.11</version>
+				<version>0.8.12</version>
 				<executions>
 					<execution>
 						<goals>
@@ -218,5 +218,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
