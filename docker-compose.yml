@@ -16,6 +16,8 @@ services:
   spring-boot-jsonb-app:
     build: .
     restart: always
+    volumes:
+      - ./logs:/logs
     ports:
       - "9080:9080"
     depends_on:
@@ -32,3 +34,4 @@ services:
 
 volumes:
   postgres-data:
+  logs:
