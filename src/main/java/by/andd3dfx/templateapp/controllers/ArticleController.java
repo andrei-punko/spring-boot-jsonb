@@ -51,13 +51,13 @@ public class ArticleController {
         return articleService.create(newArticleDto);
     }
 
-    @ApiOperation(value = "Get article by location", response = List.class)
+    @ApiOperation(value = "Get articles by location", response = List.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Article successfully retrieved"),
-            @ApiResponse(code = 404, message = "Article not found"),
+            @ApiResponse(code = 200, message = "Articles successfully retrieved"),
+            @ApiResponse(code = 404, message = "Articles not found"),
     })
     @GetMapping
-    public List<ArticleDto> getArticleByLocation(
+    public List<ArticleDto> getArticlesByLocation(
             @RequestParam(required = false, name = "country") String country,
             @RequestParam(required = false, name = "city") String city) {
         return articleService.getArticleByLocation(country, city);
