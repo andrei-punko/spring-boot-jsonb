@@ -1,9 +1,9 @@
 
-insert into articles (id, title, summary, text, author, location, date_created, date_updated)
-values (nextval('ARTICLE_ID_SEQ'), 'Игрок', 'Рассказ о страсти игромании', '', 'Федор Достоевский', '{ "country": "RU", "city": "Moscow" }', current_timestamp, current_timestamp);
+insert into articles (id, title, summary, text, author, date_created, date_updated)
+values (nextval('ARTICLE_ID_SEQ'), 'Игрок', 'Рассказ о страсти игромании', '', 'Федор Достоевский', current_timestamp, current_timestamp);
 
-insert into articles (id, title, summary, text, author, location, date_created, date_updated)
-values (nextval('ARTICLE_ID_SEQ'), 'Преступление и наказание', 'Рассказ о убийце и его раскаянии', '', 'Федор Достоевский', '{ "country": "RU", "city": "Smolensk" }', current_timestamp, current_timestamp);
+insert into articles (id, title, summary, text, author, date_created, date_updated)
+values (nextval('ARTICLE_ID_SEQ'), 'Преступление и наказание', 'Рассказ о убийце и его раскаянии', '', 'Федор Достоевский', current_timestamp, current_timestamp);
 
 insert into articles (id, title, summary, text, author, date_created, date_updated)
 values (nextval('ARTICLE_ID_SEQ'), 'Келейные письма', 'Сборник писем', '', 'Тихон Задонский', current_timestamp, current_timestamp);
