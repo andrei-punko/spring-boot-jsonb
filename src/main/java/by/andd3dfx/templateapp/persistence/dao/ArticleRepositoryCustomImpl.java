@@ -20,10 +20,8 @@ public class ArticleRepositoryCustomImpl implements ArticleRepositoryCustom {
      */
     @Override
     public List<Article> getArticleByCountryNCity(String country, String city) {
-        return em.createNativeQuery("SELECT * " +
-                        "FROM articles a " +
-                        buildLocationCondition(country, city),
-                Article.class)
+        var locationCondition = buildLocationCondition(country, city);
+        return em.createNativeQuery("SELECT * FROM articles a " + locationCondition, Article.class)
                 .getResultList();
     }
 
@@ -35,8 +33,10 @@ public class ArticleRepositoryCustomImpl implements ArticleRepositoryCustom {
         if (city != null) {
             items.add("\"city\": \"" + city + "\"");
         }
-        if (items.isEmpty()) return "";
+        if (items.isEmpty()) {
+            return "";
+        }
 
-        return "WHERE a.location @> '{ " + items.stream().collect(Collectors.joining(",")) + " }'";
+        return "WHERE a.location @> '{ " + String.join(",", items) + " }'";
     }
 }
