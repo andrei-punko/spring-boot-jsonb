@@ -4,7 +4,7 @@ create table articles (
     title varchar(100) not null,
     summary varchar(255),
     ts timestamp,
-    text varchar not null,
+    "text" varchar not null,
     author varchar not null,
     location JSONB,
     date_created timestamp not null,
