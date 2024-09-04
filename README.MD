@@ -30,35 +30,20 @@ http://localhost:9080/swagger-ui/index.html
 ## Useful CURL commands
 
 ### New article addition:
-```bash
-curl -i -X POST "http://localhost:9080/articles" -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Some tittle", "text": "Some text", "author": "Pushkin", "location": { "country": "BY", "city": "Minsk" } }'
-```
+    curl -X POST "http://localhost:9080/articles" -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Some tittle", "text": "Some text", "author": "Pushkin", "location": { "country": "BY", "city": "Minsk" } }'
 
 ### Get existing article:
-```bash
-curl -i http://localhost:9080/articles/1
-```
+    curl -i http://localhost:9080/articles/1
 
 ### Update existing article:
-```bash
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Another tittle" }' -X PATCH http://localhost:9080/articles/2
-```
+    curl -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Another tittle" }' -X PATCH http://localhost:9080/articles/2
 
 ### Search articles by an inner field of JSONB type:
-```bash
-curl -i 'http://localhost:9080/articles?country=BY'
-```
-
-```bash
-curl -i 'http://localhost:9080/articles?country=BY&city=Minsk'
-```
+    curl -i 'http://localhost:9080/articles?country=BY'
+    curl -i 'http://localhost:9080/articles?country=BY&city=Minsk'
 
 ### Get list of articles with pagination support:  
-```bash
-curl -i 'http://localhost:9080/articles/all?size=2&page=4&sort=title,DESC'
-```
+    curl -i 'http://localhost:9080/articles/all?size=2&page=4&sort=title,DESC'
 
 ### Deletion of article:  
-```bash
-curl -i -X DELETE http://localhost:9080/articles/1
-```
+    curl -i -X DELETE http://localhost:9080/articles/1
