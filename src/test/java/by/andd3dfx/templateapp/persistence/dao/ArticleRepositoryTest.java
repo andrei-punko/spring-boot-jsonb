@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,23 +32,22 @@ class ArticleRepositoryTest {
 
     @BeforeEach
     public void setup() {
-        repository.deleteAll();
         entity = buildArticle("Ivan", "HD", LocalDateTime.parse("2010-12-03T10:15:30"));
         entity2 = buildArticle("Vasily", "HD", LocalDateTime.parse("2011-12-03T10:15:30"));
         entity3 = buildArticle("Ivan", "4K", LocalDateTime.parse("2012-12-03T10:15:30"));
-        repository.saveAll(Arrays.asList(entity, entity2, entity3));
+        repository.saveAll(List.of(entity, entity2, entity3));
     }
 
     @AfterEach
     public void tearDown() {
-        repository.deleteAll();
+        repository.deleteAll(List.of(entity, entity2, entity3));
     }
 
     @Test
     public void findAll() {
-        var result = repository.findAll(Pageable.ofSize(10));
+        var result = repository.findAll(Pageable.ofSize(2));
 
-        assertThat("Wrong records amount", result.getNumberOfElements(), is(3));
+        assertThat("Wrong records amount", result.getNumberOfElements(), is(2));
     }
 
     @Test

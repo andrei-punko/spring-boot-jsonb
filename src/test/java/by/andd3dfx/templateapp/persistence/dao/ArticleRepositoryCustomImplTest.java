@@ -30,11 +30,10 @@ public class ArticleRepositoryCustomImplTest {
 
     @BeforeEach
     void setUp() {
-        repository.deleteAll();
         entity = buildArticle("Ivan", "HD", "FR", "Brest");
         entity2 = buildArticle("Vasily", "HD", "BY", "Brest");
         entity3 = buildArticle("Ivan", "4K", "BY", "Minsk");
-        repository.saveAll(Arrays.asList(entity, entity2, entity3));
+        repository.saveAll(List.of(entity, entity2, entity3));
     }
 
     public static Article buildArticle(String title, String summary, String country, String city) {
@@ -50,7 +49,7 @@ public class ArticleRepositoryCustomImplTest {
 
     @AfterEach
     public void tearDown() {
-        repository.deleteAll();
+        repository.deleteAll(List.of(entity, entity2, entity3));
     }
 
     @Test
