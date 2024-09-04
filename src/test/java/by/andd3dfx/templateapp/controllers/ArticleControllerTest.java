@@ -459,6 +459,15 @@ class ArticleControllerTest {
         assertThat(exMsg, containsString("Text length should be 1 at least"));
     }
 
+    @Test
+    public void checkSwaggerUiLinkAvailability() throws Exception {
+        mockMvc.perform(get("/swagger-ui/index.html"))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get("/swagger-ui.html"))
+                .andExpect(status().isFound());
+    }
+
     private String json(Object o) throws IOException {
         return objectMapper.writeValueAsString(o);
     }
