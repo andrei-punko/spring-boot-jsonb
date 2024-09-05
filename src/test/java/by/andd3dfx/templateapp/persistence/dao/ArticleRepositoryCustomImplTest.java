@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 
 @ContextConfiguration(initializers = IntegrationTestInitializer.class)
 @SpringBootTest
@@ -56,7 +57,7 @@ public class ArticleRepositoryCustomImplTest {
     void getArticleByLocationByCountryNCity() {
         List<Article> result = repository.getArticleByCountryNCity("FR", "Brest");
 
-        assertThat("One element expected", result.size(), is(1));
+        assertThat(result.size(), is(1));
         Article article = result.get(0);
         assertThat("Wrong title", article.getTitle(), is("Ivan"));
         assertThat("Wrong summary", article.getSummary(), is("HD"));
@@ -68,7 +69,7 @@ public class ArticleRepositoryCustomImplTest {
     void getArticleByLocationByCountry() {
         List<Article> result = repository.getArticleByCountryNCity("BY", null);
 
-        assertThat("One element expected", result.size(), is(2));
+        assertThat(result.size(), is(2));
 
         Article article = result.get(0);
         assertThat("Wrong [0].title", article.getTitle(), is("Vasily"));
@@ -87,7 +88,7 @@ public class ArticleRepositoryCustomImplTest {
     void getArticleByLocationByCity() {
         List<Article> result = repository.getArticleByCountryNCity(null, "Brest");
 
-        assertThat("One element expected", result.size(), is(2));
+        assertThat(result.size(), is(2));
 
         Article article = result.get(0);
         assertThat("Wrong [0].title", article.getTitle(), is("Ivan"));
@@ -100,5 +101,12 @@ public class ArticleRepositoryCustomImplTest {
         assertThat("Wrong [1].summary", article2.getSummary(), is("HD"));
         assertThat("Wrong [1].location.country", article2.getLocation().getCountry(), is("BY"));
         assertThat("Wrong [1].location.city", article2.getLocation().getCity(), is("Brest"));
+    }
+
+    @Test
+    void getArticleByLocationWhenParamsAreNull() {
+        var result = repository.getArticleByCountryNCity(null, null);
+
+        assertThat(result.size(), greaterThan(2));
     }
 }

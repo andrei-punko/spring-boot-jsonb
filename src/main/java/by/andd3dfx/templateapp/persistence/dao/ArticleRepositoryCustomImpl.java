@@ -1,42 +1,32 @@
 package by.andd3dfx.templateapp.persistence.dao;
 
+import by.andd3dfx.templateapp.dto.LocationDto;
 import by.andd3dfx.templateapp.persistence.entities.Article;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
+@RequiredArgsConstructor
 public class ArticleRepositoryCustomImpl implements ArticleRepositoryCustom {
 
-    @Autowired
-    private EntityManager em;
+    private final static String SELECT_ARTICLES_BY_LOCATION_QUERY = "SELECT * FROM articles a " + "WHERE a.location @> '%s'";
+
+    private final EntityManager em;
+    private final ObjectMapper mapper;
 
     /**
      * See for reference: https://medium.com/hackernoon/how-to-query-jsonb-beginner-sheet-cheat-4da3aa5082a3
      */
+    @SneakyThrows
     @Override
     public List<Article> getArticleByCountryNCity(String country, String city) {
-        var locationCondition = buildLocationCondition(country, city);
-        return em.createNativeQuery("SELECT * FROM articles a " + locationCondition, Article.class)
+        var location = mapper.writeValueAsString(new LocationDto(country, city));
+        return em.createNativeQuery(SELECT_ARTICLES_BY_LOCATION_QUERY.formatted(location), Article.class)
                 .getResultList();
-    }
-
-    private String buildLocationCondition(String country, String city) {
-        List<String> items = new ArrayList<>();
-        if (country != null) {
-            items.add("\"country\": \"" + country + "\"");
-        }
-        if (city != null) {
-            items.add("\"city\": \"" + city + "\"");
-        }
-        if (items.isEmpty()) {
-            return "";
-        }
-
-        return "WHERE a.location @> '{ " + String.join(",", items) + " }'";
     }
 }

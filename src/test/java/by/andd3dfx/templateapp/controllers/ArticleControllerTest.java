@@ -23,6 +23,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -281,6 +282,23 @@ class ArticleControllerTest {
                 .andExpect(jsonPath("$[0].summary", is("4K")))
                 .andExpect(jsonPath("$[0].location.country", is("BY")))
                 .andExpect(jsonPath("$[0].location.city", is("Minsk")));
+
+        repository.deleteAll(List.of(entity, entity2, entity3));
+    }
+
+    /**
+     * Search by location using JSONB fields: location without any fields populated
+     */
+    @Test
+    public void readArticlesByLocationWhenBothCountryAndCityAreNull() throws Exception {
+        var entity = buildArticle("Ivan", "HD", "FR", "Brest");
+        var entity2 = buildArticle("Vasily", "HD", "BY", "Brest");
+        var entity3 = buildArticle("Ivan-007", "4K", "BY", "Minsk");
+        repository.saveAll(List.of(entity, entity2, entity3));
+
+        mockMvc.perform(get("/articles"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", greaterThan(2)));
 
         repository.deleteAll(List.of(entity, entity2, entity3));
     }
