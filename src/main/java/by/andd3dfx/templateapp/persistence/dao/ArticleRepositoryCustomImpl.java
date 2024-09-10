@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ArticleRepositoryCustomImpl implements ArticleRepositoryCustom {
 
-    private final static String SELECT_ARTICLES_BY_LOCATION_QUERY = "SELECT * FROM articles a " + "WHERE a.location @> '%s'";
+    private final static String SELECT_ARTICLES_BY_LOCATION_QUERY = "SELECT * FROM articles a WHERE a.location @> '%s'";
 
     private final EntityManager em;
     private final ObjectMapper mapper;

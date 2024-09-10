@@ -104,7 +104,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
 		<!-- JSONB types -->
 		<dependency>
 			<groupId>com.vladmihalcea</groupId>

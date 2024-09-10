@@ -62,3 +62,7 @@ curl -i 'http://localhost:9080/articles/all?size=2&page=4&sort=title,DESC'
 ```bash
 curl -i -X DELETE http://localhost:9080/articles/1
 ```
+
+## Video with description of the project
+
+[YouTube link](https://youtu.be/AzvJe9ij53o)
