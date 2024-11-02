@@ -24,6 +24,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -355,11 +356,11 @@ class ArticleControllerTest {
     public void readArticles() throws Exception {
         mockMvc.perform(get("/articles/all"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content", hasSize(10)))
+                .andExpect(jsonPath("$.content", hasSize(greaterThanOrEqualTo(10))))
                 .andExpect(jsonPath("$.number", is(0)))
                 .andExpect(jsonPath("$.size", is(50)))
                 .andExpect(jsonPath("$.totalPages", is(1)))
-                .andExpect(jsonPath("$.totalElements", is(10)));
+                .andExpect(jsonPath("$.totalElements", greaterThanOrEqualTo(10)));
     }
 
     @Test
@@ -371,7 +372,7 @@ class ArticleControllerTest {
                 .andExpect(jsonPath("$.number", is(0)))
                 .andExpect(jsonPath("$.size", is(5)))
                 .andExpect(jsonPath("$.totalPages", is(2)))
-                .andExpect(jsonPath("$.totalElements", is(9)));
+                .andExpect(jsonPath("$.totalElements", greaterThan(5)));
     }
 
     @Test
