@@ -21,10 +21,10 @@ insert into articles (id, title, summary, "text", author, date_created, date_upd
 values (nextval('ARTICLE_ID_SEQ'), 'Современная практика православного благочестия', 'Руководство к духовной жизни', '', 'Николай Пестов', current_timestamp, current_timestamp);
 
 insert into articles (id, title, summary, "text", author, date_created, date_updated)
-values (nextval('ARTICLE_ID_SEQ'), 'Великое в малом', '', '', 'Сергей Нилус', current_timestamp, current_timestamp);
+values (nextval('ARTICLE_ID_SEQ'), 'Сила Божия и немощь человеческая', 'Жизнеописание игумена Феодосия', '', 'Сергей Нилус', current_timestamp, current_timestamp);
 
 insert into articles (id, title, summary, "text", author, date_created, date_updated)
-values (nextval('ARTICLE_ID_SEQ'), 'Отечник', 'Выписки из святых отцов', '', 'Игнатий Брянчанинов', current_timestamp, current_timestamp);
+values (nextval('ARTICLE_ID_SEQ'), 'Отечник', 'Цитаты Святых Отцов', '', 'Игнатий Брянчанинов', current_timestamp, current_timestamp);
 
 insert into articles (id, title, summary, "text", author, date_created, date_updated)
 values (nextval('ARTICLE_ID_SEQ'), 'Душеполезные поучения', 'Азбука духовной жизни', '', 'Авва Дорофей', current_timestamp, current_timestamp);

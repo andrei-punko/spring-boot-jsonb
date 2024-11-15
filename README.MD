@@ -63,6 +63,13 @@ curl -i 'http://localhost:9080/articles/all?size=2&page=4&sort=title,DESC'
 curl -i -X DELETE http://localhost:9080/articles/1
 ```
 
+## Run functional tests:
+
+    cd func-test
+    ./gradlew clean build
+
+Check functional test report [here](func-test/build/spock-reports/index.html)
+
 ## Video with description of the project
 
 [YouTube link](https://youtu.be/AzvJe9ij53o)
