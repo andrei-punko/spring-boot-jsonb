@@ -16,7 +16,7 @@ Supports CRUD set of operations and R operation with pagination.
     mvn clean install
 
 ## Build Docker image with application inside:
-    docker build ./ -t spring-boot-jsonb-app
+    docker build --no-cache ./ -t spring-boot-jsonb-app
 
 ## Start two Docker containers - with Postgres DB and application:
     docker-compose up
@@ -46,11 +46,11 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{ 
 
 ### Search articles by an inner field of JSONB type:
 ```bash
-curl -i 'http://localhost:9080/articles?country=BY'
+curl -i 'http://localhost:9080/articles?country=RU'
 ```
 
 ```bash
-curl -i 'http://localhost:9080/articles?country=BY&city=Minsk'
+curl -i 'http://localhost:9080/articles?country=RU&city=Moscow'
 ```
 
 ### Get list of articles with pagination support:  
