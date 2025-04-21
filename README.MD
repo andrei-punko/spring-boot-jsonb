@@ -83,4 +83,5 @@ Check functional test report [here](func-test/build/spock-reports/index.html)
 
 ## Video with description of the project
 
-[YouTube link](https://youtu.be/AzvJe9ij53o)
+[//]: # ([YouTube link]&#40;https://youtu.be/AzvJe9ij53o&#41;)
+[![YouTube link](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fyoutu.be%2FAzvJe9ij53o)](https://youtu.be/AzvJe9ij53o)
