@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "965c45ef-7da6-49b2-a461-88112a4d3d76",
+		"name": "JSONB app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1701433"
+	},
+	"item": [
+		{
+			"name": "New article addition",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"title\": \"Some tittle\", \"text\": \"Some text\", \"author\": \"Pushkin\", \"location\": { \"country\": \"BY\", \"city\": \"Minsk\" } }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service-url}}/articles",
+					"host": [
+						"{{service-url}}"
+					],
+					"path": [
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get article",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{service-url}}/articles/10",
+					"host": [
+						"{{service-url}}"
+					],
+					"path": [
+						"articles",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update article",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"title\": \"Another tittle\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service-url}}/articles/2",
+					"host": [
+						"{{service-url}}"
+					],
+					"path": [
+						"articles",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get articles by inner field of JSONB 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{service-url}}/articles?country=RU",
+					"host": [
+						"{{service-url}}"
+					],
+					"path": [
+						"articles"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "RU"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get articles by inner field of JSONB 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{service-url}}/articles?country=RU&city=Moscow",
+					"host": [
+						"{{service-url}}"
+					],
+					"path": [
+						"articles"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "RU"
+						},
+						{
+							"key": "city",
+							"value": "Moscow"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get articles with pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{service-url}}/articles/all?size=2&page=4&sort=title,DESC",
+					"host": [
+						"{{service-url}}"
+					],
+					"path": [
+						"articles",
+						"all"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "2"
+						},
+						{
+							"key": "page",
+							"value": "4"
+						},
+						{
+							"key": "sort",
+							"value": "title,DESC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletion of article",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{service-url}}/articles/1",
+					"host": [
+						"{{service-url}}"
+					],
+					"path": [
+						"articles",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

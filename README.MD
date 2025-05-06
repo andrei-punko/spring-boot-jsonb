@@ -32,6 +32,11 @@ http://localhost:9080/articles
 
 http://localhost:9080/swagger-ui/index.html
 
+
+## Postman requests
+
+Placed in appropriate [folder](postman)
+
 ## Useful CURL commands
 
 ### New article addition:
