@@ -28,7 +28,7 @@ Supports CRUD set of operations and R operation with pagination.
 
 http://localhost:9080/articles
 
-## Swagger documentation:
+## Swagger documentation
 
 http://localhost:9080/swagger-ui/index.html
 
@@ -42,19 +42,22 @@ Placed in appropriate [folder](postman)
 ### New article addition:
 
 ```bash
-curl -i -X POST "http://localhost:9080/articles" -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Some tittle", "text": "Some text", "author": "Pushkin", "location": { "country": "BY", "city": "Minsk" } }'
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" \
+  -d '{ "title": "Some tittle", "text": "Some text", "author": "Pushkin", "location": { "country": "BY", "city": "Minsk" } }' \
+  -X POST "http://localhost:9080/articles"
 ```
 
 ### Get existing article:
 
 ```bash
-curl -i http://localhost:9080/articles/1
+curl -i http://localhost:9080/articles/10
 ```
 
 ### Update existing article:
 
 ```bash
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Another tittle" }' -X PATCH http://localhost:9080/articles/2
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "title": "Another tittle" }' \
+  -X PATCH http://localhost:9080/articles/2
 ```
 
 ### Search articles by an inner field of JSONB type:
